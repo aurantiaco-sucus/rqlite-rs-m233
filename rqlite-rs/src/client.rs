@@ -122,7 +122,7 @@ impl RqliteClientBuilder {
 
         let hosts = self.hosts.into_iter().collect::<Vec<String>>();
 
-        println!("hosts: {hosts:?}");
+        // println!("hosts: {hosts:?}");
 
         let mut headers = header::HeaderMap::new();
         headers.insert(
@@ -161,7 +161,7 @@ impl RqliteClient {
     ) -> Result<reqwest::Response, RequestError> {
         let (mut host, host_count) = {
             let hosts = self.hosts.read().unwrap();
-            println!("hosts: {hosts:?}");
+            // println!("hosts: {hosts:?}");
             (hosts[0].clone(), hosts.len())
         };
 
@@ -172,7 +172,7 @@ impl RqliteClient {
         };
 
         for _ in 0..retry_count {
-            println!("Trying host: {host}");
+            // println!("Trying host: {host}");
             let req = options.to_reqwest_request(&self.client, host.as_str(), &self.config.scheme);
 
             match req.send().await {
@@ -216,7 +216,7 @@ impl RqliteClient {
                 .ok_or(RequestError::NoAvailableHosts)?;
 
             host.clone_from(new_host);
-            println!("Connection to {} failed, trying {}", previous_host, *host);
+            // println!("Connection to {} failed, trying {}", previous_host, *host);
             Ok(())
         } else {
             Err(RequestError::SwitchoverWrongError(e.to_string()))
