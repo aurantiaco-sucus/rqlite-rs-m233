@@ -14,4 +14,6 @@ pub enum IntoTypedError {
     #[cfg(feature = "fast-blob")]
     #[error("Could not decode blob {0}")]
     BlobDecodeError(#[from] base64::DecodeError),
+    #[error("{0:?}")]
+    Other(String)
 }

@@ -56,6 +56,22 @@ impl Row {
         Ok(value)
     }
 
+    pub fn get_i64(&self, name: &str) -> Result<i64, IntoTypedError> {
+        self.get(name)
+    }
+
+    pub fn get_f64(&self, name: &str) -> Result<f64, IntoTypedError> {
+        self.get(name)
+    }
+
+    pub fn get_string(&self, name: &str) -> Result<String, IntoTypedError> {
+        self.get(name)
+    }
+
+    pub fn get_blob(&self, name: &str) -> Result<Vec<u8>, IntoTypedError> {
+        self.get(name)
+    }
+
     /// Get a value by column name, returning `None` if the value is `null`
     ///
     /// # Errors
