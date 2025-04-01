@@ -204,7 +204,7 @@ impl RqliteClient {
         host: &mut String, // warum wird host gepasst? wird nicht alles über self.hosts gemacht?
     ) -> Result<(), RequestError> {
         if e.is_connect() || e.is_timeout() {
-            let previous_host = host.clone();
+            // let previous_host = host.clone();
             let mut writable_hosts = self.hosts.write().unwrap();
 
             let new_host = self
